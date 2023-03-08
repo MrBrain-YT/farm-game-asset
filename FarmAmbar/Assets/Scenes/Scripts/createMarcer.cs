@@ -7,7 +7,9 @@ public class createMarcer : MonoBehaviour
     // Start is called before the first frame update
     public GameObject Marcer;
     public GameObject TreeMarcer;
+    public GameObject RockMarcer;
     public GameObject DelTree;
+    public GameObject DelRock;
     void Start()
     {
 
@@ -25,17 +27,41 @@ public class createMarcer : MonoBehaviour
                 DelTree = hit2.collider.gameObject;
                 if (Input.GetMouseButtonDown(1))
                 {
+                    Destroy(GameObject.Find("RockMarker(Clone)"));
                     GameObject obj = GameObject.Find("Sphere(Clone)");
                     if (obj == null)
                     {
+                        Destroy(GameObject.Find("RockMarker(Clone)"));
                         Destroy(GameObject.Find("Cylinder(Clone)"));
                         Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
                     }
                     else
                     {
+                        Destroy(GameObject.Find("RockMarker(Clone)"));
                         Destroy(GameObject.Find("Cylinder(Clone)"));
                         Destroy(GameObject.Find("Sphere(Clone)"));
                         Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
+                    }
+                }
+            }
+            else if (hit2.collider.gameObject.name == "Rock")
+            {
+                DelRock = hit2.collider.gameObject;
+                if (Input.GetMouseButtonDown(1))
+                {
+                    GameObject obj = GameObject.Find("RockMarker(Clone)");
+                    if (obj == null)
+                    {
+                        Destroy(GameObject.Find("Cylinder(Clone)"));
+                        Destroy(GameObject.Find("Sphere(Clone)"));
+                        Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        Destroy(GameObject.Find("Cylinder(Clone)"));
+                        Destroy(GameObject.Find("Sphere(Clone)"));
+                        Destroy(GameObject.Find("RockMarker(Clone)"));
+                        Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
                     }
                 }
             }
@@ -48,6 +74,7 @@ public class createMarcer : MonoBehaviour
                     GameObject obj = GameObject.Find("Cylinder(Clone)");
                     if (obj == null)
                     {
+                        Destroy(GameObject.Find("RockMarker(Clone)"));
                         Destroy(GameObject.Find("Sphere(Clone)"));
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                         RaycastHit hit;
@@ -64,6 +91,7 @@ public class createMarcer : MonoBehaviour
                     }
                     else
                     {
+                        Destroy(GameObject.Find("RockMarker(Clone)"));
                         Destroy(GameObject.Find("Cylinder(Clone)"));
                         Destroy(GameObject.Find("Sphere(Clone)"));
                         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

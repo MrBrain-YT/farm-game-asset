@@ -18,7 +18,6 @@ public class CameraZoom : MonoBehaviour
     {
         // Get the amount the mouse wheel has been scrolled
         float scrollDelta = Input.mouseScrollDelta.y;
-        print(scrollDelta);
 
         // Zoom the camera in or out depending on the scroll direction
         if (scrollDelta < 0)

@@ -8,14 +8,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public Animator Anim;
     public GameObject Axe;
-
-    int Rotate = 0;
+    public GameObject PickAxe;
 
     private Transform characterTransform;
     private Transform targetTransform;
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("GetRock", 0);
         PlayerPrefs.SetInt("GetWood", 0);
         characterTransform = transform.GetComponent<Transform>();
         targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
@@ -37,13 +37,6 @@ public class PlayerMovement : MonoBehaviour
                 if (distance > 2f)
                 {
                     transform.LookAt(new Vector3(targetTransform.position.x, targetTransform.position.y - 12.5f, targetTransform.position.z));
-                    if (Rotate == 0)
-                    {
-
-
-                        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
-                        Rotate = 1;
-                    }
                     //transform.LookAt(targetTransform);
                     Anim.SetFloat("Wolk", 1f);
                     print(distance);
@@ -55,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
                 {
                     Anim.SetFloat("Wolk", 0f);
                     Destroy(GameObject.Find("Cylinder(Clone)"));
-                    Rotate = 0;
                 }
             }
             GameObject TreeMarker = GameObject.Find("Sphere(Clone)");
@@ -68,13 +60,6 @@ public class PlayerMovement : MonoBehaviour
                 if (distance2 > 5.5f)
                 {
                     transform.LookAt(new Vector3(targetTransformTree.position.x, targetTransformTree.position.y - 0.5f, targetTransformTree.position.z));
-                    if (Rotate == 0)
-                    {
-
-
-                        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
-                        Rotate = 1;
-                    }
                     //transform.LookAt(targetTransform);
                     Anim.SetFloat("Wolk", 1f);
                     print(distance2);
@@ -90,9 +75,36 @@ public class PlayerMovement : MonoBehaviour
                     Axe.SetActive(true);
                     Anim.SetFloat("GetWood", 1f);
                     Destroy(GameObject.Find("Cylinder(Clone)"));
-                    Rotate = 0;
                 }
             }
+            GameObject RockMarker = GameObject.Find("RockMarker(Clone)");
+            if (RockMarker != null)
+            {
+                Transform targetTransformRock = GameObject.Find("RockMarker(Clone)").GetComponent<Transform>();
+                float distance3 = Vector3.Distance(characterTransform.position, new Vector3(targetTransformRock.position.x, 100.1f, targetTransformRock.position.z));
+                //print(distance3 + "  123");
+                // Move the character towards the target object if it is not yet close enough
+                if (distance3 > 9f)
+                {
+                        
+                    transform.LookAt(new Vector3(targetTransformRock.position.x, targetTransformRock.position.y - 0.5f, targetTransformRock.position.z));
+                    //transform.LookAt(targetTransform);
+                    Anim.SetFloat("Wolk", 1f);
+                    Vector3 direction3 = (targetTransformRock.position - characterTransform.position).normalized;
+                    characterTransform.position += direction3 * moveSpeed * Time.deltaTime;
+                    //Destroy(GameObject.Find("Cylinder(Clone)"));
+                }
+                else
+                {
+                    this.GetComponent<MiningWood>().time = 0;
+                    PlayerPrefs.SetInt("GetRock", 1);
+                    Anim.SetFloat("Wolk", 0f);
+                    PickAxe.SetActive(true);
+                    Anim.SetFloat("GetRock", 1f);
+                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                }
+            }
+            
         }
     }
 }
