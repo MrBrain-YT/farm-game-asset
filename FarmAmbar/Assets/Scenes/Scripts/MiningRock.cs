@@ -27,7 +27,7 @@ public class MiningRock : MonoBehaviour
                 Anim.SetFloat("GetRock", 0);
                 PixeAxe.SetActive(false);
                 PlayerPrefs.SetInt("GetRock", 0);
-                Destroy(GameObject.Find("RockMarker(Clone)"));
+                
 
             }
             else

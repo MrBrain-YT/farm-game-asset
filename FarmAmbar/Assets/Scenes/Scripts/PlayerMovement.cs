@@ -101,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
                 Anim.SetFloat("Wolk", 0f);
                 PickAxe.SetActive(true);
                 Anim.SetFloat("GetRock", 1f);
-                
+                Destroy(GameObject.Find("RockMarker(Clone)"));
             }
         }
             
