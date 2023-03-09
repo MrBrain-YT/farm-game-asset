@@ -18,19 +18,16 @@ public class MiningWood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (PlayerPrefs.GetInt("GetWood") == 1)
         {
-            Destroy(GameObject.Find("Sphere(Clone)"));
             if (time == timer * 60)
             {
-                
                 Tree = this.GetComponent<createMarcer>().DelTree;
                 Destroy(Tree);
                 Anim.SetFloat("GetWood", 0);
                 Axe.SetActive(false);
                 PlayerPrefs.SetInt("GetWood", 0);
-                
+                Destroy(GameObject.Find("Sphere(Clone)"));
             }
             else
             {

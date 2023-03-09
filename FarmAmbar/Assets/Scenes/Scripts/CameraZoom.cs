@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     private int MaxScroll = 11;
-    private int MinScroll = 0;
+    private int MinScroll = 2;
     private int CurentScroll = 5;
     // Start is called before the first frame update
     void Start()
