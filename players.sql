@@ -37,12 +37,7 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`Name`, `Password`) VALUES
-('Suleiman​', 'efsfsefsfsef'),
-('Suleiman​', 'иди работай'),
-('Vasia​', 'иди работай'),
-('123​', '123'),
-('as​', 'as'),
-('Kas120920055002!!! == True  ​', 'Kas1209');
+('123​', '123');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
