@@ -7,6 +7,8 @@ TagManager:
   - Marker
   - Rock
   - Tree
+  - earth_0
+  - earth_1
   layers:
   - Default
   - TransparentFX
