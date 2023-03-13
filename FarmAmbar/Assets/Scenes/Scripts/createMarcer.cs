@@ -10,6 +10,9 @@ public class createMarcer : MonoBehaviour
     public GameObject RockMarcer;
     public GameObject DelTree;
     public GameObject DelRock;
+    public GameObject AddStartGround;
+    public GameObject GroundGalagramm;
+    public GameObject Ground_Part1;
     void Start()
     {
 
@@ -113,6 +116,57 @@ public class createMarcer : MonoBehaviour
                                     Instantiate(Marcer, new Vector3(contactPoint.x, 112.79f, contactPoint.z), Quaternion.identity);
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+        if (PlayerPrefs.GetInt("Build_mode") == 1)
+        {
+
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit2;
+            if (Physics.Raycast(ray2, out hit2))
+            {
+                if (hit2.transform.tag == "earth_1" || hit2.transform.tag == "Rock" || hit2.transform.tag == "Tree")
+                {
+                    Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+                }
+                else
+                {
+                    float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
+                    float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
+
+
+                    float PosX2 = PosX * 20;
+                    float PosZ2 = (PosZ * 20) + 20;
+                    print(PosZ2);
+
+                    if (GameObject.Find("Groun_PreModel(Clone)") == null)
+                    {
+                        GameObject GO = Instantiate(GroundGalagramm, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                        GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+
+                    }
+                    else
+                    {
+                        GameObject.Find("Groun_PreModel(Clone)").transform.position = new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2);
+                    }
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        GameObject Earth = Instantiate(Ground_Part1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                        Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        Earth.tag = "earth_1";
+                        Earth.transform.GetChild(0).tag = "earth_1";
+                    }
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) // проверка зажатия клавиши Shift
+                    {
+                        if (Input.GetMouseButton(1)) // проверка зажатия правой кнопки мыши
+                        {
+                            GameObject Earth = Instantiate(Ground_Part1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                            Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                            Earth.tag = "earth_1";
+                            Earth.transform.GetChild(0).tag = "earth_1";
                         }
                     }
                 }
