@@ -144,9 +144,11 @@ public class createMarcer : MonoBehaviour
 
                     if (GameObject.Find("Groun_PreModel(Clone)") == null)
                     {
-                        GameObject GO = Instantiate(GroundGalagramm, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
-                        GO.transform.rotation = Quaternion.Euler(0, 0, 90);
-
+                        if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
+                        {
+                            GameObject GO = Instantiate(GroundGalagramm, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
+                        }
                     }
                     else
                     {
@@ -154,19 +156,25 @@ public class createMarcer : MonoBehaviour
                     }
                     if (Input.GetMouseButtonDown(1))
                     {
-                        GameObject Earth = Instantiate(Ground_Part1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
-                        Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
-                        Earth.tag = "earth_1";
-                        Earth.transform.GetChild(0).tag = "earth_1";
-                    }
-                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) // проверка зажатия клавиши Shift
-                    {
-                        if (Input.GetMouseButton(1)) // проверка зажатия правой кнопки мыши
+                        if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                         {
                             GameObject Earth = Instantiate(Ground_Part1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
                             Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
                             Earth.tag = "earth_1";
                             Earth.transform.GetChild(0).tag = "earth_1";
+                        }
+                    }
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) // проверка зажатия клавиши Shift
+                    {
+                        if (Input.GetMouseButton(1)) // проверка зажатия правой кнопки мыши
+                        {
+                            if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
+                            {
+                                GameObject Earth = Instantiate(Ground_Part1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                                Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                                Earth.tag = "earth_1";
+                                Earth.transform.GetChild(0).tag = "earth_1";
+                            }
                         }
                     }
                 }
