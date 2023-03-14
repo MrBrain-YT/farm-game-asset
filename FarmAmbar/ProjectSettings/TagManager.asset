@@ -9,6 +9,7 @@ TagManager:
   - Tree
   - earth_0
   - earth_1
+  - build
   layers:
   - Default
   - TransparentFX
