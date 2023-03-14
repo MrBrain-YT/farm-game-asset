@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject GroundBuild;
     private Transform characterTransform;
     private Transform targetTransform;
+    public GameObject Build;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPrefs.SetInt("GetRock", 0);
         PlayerPrefs.SetInt("GetWood", 0);
+        PlayerPrefs.SetInt("BuildGround", 0);
         characterTransform = transform.GetComponent<Transform>();
         targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
     }
@@ -104,32 +106,29 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(GameObject.Find("RockMarker(Clone)"));
             }
         }
-        GameObject Build  = GameObject.FindGameObjectWithTag("build");
-        print(Build);
+        Build  = GameObject.FindGameObjectWithTag("build");
         if (Build != null)
         {
             Transform targetTransformBuild = Build.GetComponent<Transform>();
-            float distance3 = Vector3.Distance(characterTransform.position, new Vector3(targetTransformBuild.position.x, 100.1f, targetTransformBuild.position.z));
-            //print(distance3 + "  123");
-            // Move the character towards the target object if it is not yet close enough
-            if (distance3 > 3f)
+            float PointX = targetTransformBuild.position.x - 10;
+            float PointZ = targetTransformBuild.position.z + 10;
+            float distance4 = Vector3.Distance(characterTransform.position, new Vector3(PointX, 100.1f, PointZ));
+            //Instantiate(GroundBuild, new Vector3(PointX, 100.1f, PointZ), Quaternion.identity);
+            if (distance4 > 5f)
             {
 
-                transform.LookAt(new Vector3(targetTransformBuild.position.x, targetTransformBuild.position.y - 0.5f, targetTransformBuild.position.z));
-                //transform.LookAt(targetTransform);
+                transform.LookAt(new Vector3(PointX, targetTransformBuild.position.y - 0.5f, PointZ));
                 Anim.SetFloat("Wolk", 1f);
-                Vector3 direction3 = (targetTransformBuild.position - characterTransform.position).normalized;
-                characterTransform.position += direction3 * moveSpeed * Time.deltaTime;
-                //Destroy(GameObject.Find("Cylinder(Clone)"));
+                Vector3 direction4 = (new Vector3(PointX, 100.1f, PointZ) - characterTransform.position).normalized;
+                characterTransform.position += direction4 * moveSpeed * Time.deltaTime;
             }
             else
             {
+                this.GetComponent<BuildGround>().time = 0;
+                Anim.SetFloat("BuildGround", 1f);
+                PlayerPrefs.SetInt("BuildGround", 1);
                 Anim.SetFloat("Wolk", 0f);
-                GameObject Earth = Instantiate(GroundBuild, Build.transform.position , Quaternion.identity);
-                Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
-                Earth.tag = "earth_1";
-                Earth.transform.GetChild(0).tag = "earth_1";
-                Destroy(Build);
+
             }
         }
     }
