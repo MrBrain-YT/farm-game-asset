@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform characterTransform;
     private Transform targetTransform;
     public GameObject Build;
+    public GameObject Shovel;
     // Start is called before the first frame update
     void Start()
     {
@@ -124,11 +125,14 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                this.GetComponent<BuildGround>().time = 0;
+                if (this.GetComponent<BuildGround>().time > 600)
+                {
+                    this.GetComponent<BuildGround>().time = 0;
+                }
                 Anim.SetFloat("BuildGround", 1f);
                 PlayerPrefs.SetInt("BuildGround", 1);
                 Anim.SetFloat("Wolk", 0f);
-
+                Shovel.SetActive(true);
             }
         }
     }
