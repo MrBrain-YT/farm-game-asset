@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_LocalScale.y
@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73,7 +73,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_TagString
-      value: earth_1
+      value: earth_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
+      propertyPath: m_TagString
+      value: earth_0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
+--- !u!1 &8013338440807003851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
+  m_PrefabInstance: {fileID: 2195991813153026883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8116281618956189966
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8013338440807003851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}

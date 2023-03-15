@@ -14,6 +14,7 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
+    private float AntiDubleGroundBuild = 0;
     void Start()
     {
 
@@ -129,7 +130,7 @@ public class createMarcer : MonoBehaviour
             RaycastHit hit2;
             if (Physics.Raycast(ray2, out hit2))
             {
-                if (hit2.transform.tag == "earth_1" || hit2.transform.tag == "Rock" || hit2.transform.tag == "Tree")
+                if (hit2.transform.tag == "earth_1" || hit2.transform.tag == "Rock" || hit2.transform.tag == "Tree" || hit2.transform.tag == "build" || hit2.transform.tag == "Player")
                 {
                     Destroy(GameObject.Find("Groun_PreModel(Clone)"));
                 }
@@ -167,14 +168,21 @@ public class createMarcer : MonoBehaviour
                     }
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                     {
-                        if (Input.GetMouseButton(1))
+                        if (Input.GetMouseButton(0))
                         {
                             if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                             {
-                                GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
-                                Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
-                                Earth.tag = "build";
-                                Earth.transform.GetChild(0).tag = "build";
+                                if (hit2.transform.tag == "earth_1" || hit2.transform.tag == "Rock" || hit2.transform.tag == "Tree" || hit2.transform.tag == "build"|| hit2.transform.tag == "Player")
+                                {
+
+                                }
+                                else 
+                                { 
+                                    GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                                    Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                                    Earth.tag = "build";
+                                    Earth.transform.GetChild(0).tag = "build";
+                                }
                             }
                         }
                     }
