@@ -10,6 +10,7 @@ TagManager:
   - earth_0
   - earth_1
   - build
+  - terrain
   layers:
   - Default
   - TransparentFX

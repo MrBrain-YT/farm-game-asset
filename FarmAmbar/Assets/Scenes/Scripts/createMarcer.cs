@@ -14,14 +14,13 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
-    private float AntiDubleGroundBuild = 0;
     void Start()
     {
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (PlayerPrefs.GetInt("Build_mode") == 0)
         {
@@ -123,7 +122,7 @@ public class createMarcer : MonoBehaviour
                 }
             }
         }
-        if (PlayerPrefs.GetInt("Build_mode") == 1)
+        else if (PlayerPrefs.GetInt("Build_mode") == 1)
         {
 
             Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -142,7 +141,6 @@ public class createMarcer : MonoBehaviour
 
                     float PosX2 = PosX * 20;
                     float PosZ2 = (PosZ * 20) + 20;
-                    print(PosZ2);
 
                     if (GameObject.Find("Groun_PreModel(Clone)") == null)
                     {
@@ -172,16 +170,22 @@ public class createMarcer : MonoBehaviour
                         {
                             if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                             {
-                                if (hit2.transform.tag == "earth_1" || hit2.transform.tag == "Rock" || hit2.transform.tag == "Tree" || hit2.transform.tag == "build"|| hit2.transform.tag == "Player")
+                                if (hit2.transform.name == "Groun_PreBuild(Clone)" || hit2.transform.name == "ground_1(Clone)")
                                 {
-
+                                    Destroy(GameObject.Find("Groun_PreModel(Clone)"));
                                 }
-                                else 
-                                { 
+                                else
+                                {
                                     GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
                                     Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
                                     Earth.tag = "build";
                                     Earth.transform.GetChild(0).tag = "build";
+                                    float x = AddStartGround.transform.position.x - PosX2;
+                                    float z = AddStartGround.transform.position.z - PosZ2;
+                                    float[] GroundsX = new float[1] {x};
+                                    float[] GroundsY = new float[1] {z};
+
+                                    print(GroundsX[]);
                                 }
                             }
                         }

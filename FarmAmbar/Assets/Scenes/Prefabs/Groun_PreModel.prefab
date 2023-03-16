@@ -72,8 +72,16 @@ PrefabInstance:
       value: Groun_PreModel
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_TagString
       value: earth_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 0725c2a1eca4a3341b5786353ae4d8ca, type: 3}
       propertyPath: m_TagString
