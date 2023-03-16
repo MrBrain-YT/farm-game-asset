@@ -14,8 +14,11 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
+    List<string> GroundXZ = new List<string>() {"go"};
+
     void Start()
     {
+        GroundXZ.Clear();
 
     }
 
@@ -158,10 +161,21 @@ public class createMarcer : MonoBehaviour
                     {
                         if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                         {
-                            GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
-                            Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
-                            Earth.tag = "build";
-                            Earth.transform.GetChild(0).tag = "build";
+                           
+                            float x = AddStartGround.transform.position.x - PosX2;
+                            float z = AddStartGround.transform.position.z - PosZ2;
+                            if (GroundXZ.Contains((x).ToString() + (z).ToString()))
+                            { 
+                            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+                            }
+                            else
+                            {
+                                GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                                Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                                Earth.tag = "build";
+                                Earth.transform.GetChild(0).tag = "build";
+                                GroundXZ.Add((x).ToString() + (z).ToString());
+                            }
                         }
                     }
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -176,16 +190,20 @@ public class createMarcer : MonoBehaviour
                                 }
                                 else
                                 {
-                                    GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
-                                    Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
-                                    Earth.tag = "build";
-                                    Earth.transform.GetChild(0).tag = "build";
                                     float x = AddStartGround.transform.position.x - PosX2;
                                     float z = AddStartGround.transform.position.z - PosZ2;
-                                    float[] GroundsX = new float[1] {x};
-                                    float[] GroundsY = new float[1] {z};
-
-                                    print(GroundsX[]);
+                                    if (GroundXZ.Contains((x).ToString() + (z).ToString()))
+                                    {
+                                        Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+                                    }
+                                    else
+                                    {
+                                        GameObject Earth = Instantiate(GroundBuildPreModel, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                                        Earth.transform.rotation = Quaternion.Euler(0, 0, 90);
+                                        Earth.tag = "build";
+                                        Earth.transform.GetChild(0).tag = "build";
+                                        GroundXZ.Add((x).ToString() + (z).ToString());
+                                    }
                                 }
                             }
                         }

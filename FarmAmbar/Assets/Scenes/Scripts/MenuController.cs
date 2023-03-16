@@ -29,6 +29,7 @@ public class MenuController : MonoBehaviour
         {
             PlayerPrefs.SetInt("Build_mode", 0);
             BuildItemsPanel.SetActive(false);
+            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
     }
 
