@@ -23,12 +23,26 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetInt("Build_mode") == 0)
         {
             PlayerPrefs.SetInt("Build_mode", 1);
+            PlayerPrefs.SetInt("Destroy_mode", 0);
             BuildItemsPanel.SetActive(true);
         }
         else
         {
             PlayerPrefs.SetInt("Build_mode", 0);
             BuildItemsPanel.SetActive(false);
+            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+        }
+    }
+    public void OnDestroyMode()
+    {
+        if (PlayerPrefs.GetInt("Destroy_mode") == 0)
+        {
+            PlayerPrefs.SetInt("Destroy_mode", 1);
+            PlayerPrefs.SetInt("Build_mode", 0);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Destroy_mode", 0);
             Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
     }

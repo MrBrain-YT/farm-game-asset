@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("GetRock", 0);
         PlayerPrefs.SetInt("GetWood", 0);
         PlayerPrefs.SetInt("BuildGround", 0);
+        PlayerPrefs.SetInt("Build", 0);
+
         characterTransform = transform.GetComponent<Transform>();
         targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
     }
@@ -117,11 +119,14 @@ public class PlayerMovement : MonoBehaviour
             //Instantiate(GroundBuild, new Vector3(PointX, 100.1f, PointZ), Quaternion.identity);
             if (distance4 > 5f)
             {
-
+                PlayerPrefs.SetInt("Build", 1);
                 transform.LookAt(new Vector3(PointX, targetTransformBuild.position.y - 0.5f, PointZ));
                 Anim.SetFloat("Wolk", 1f);
                 Vector3 direction4 = (new Vector3(PointX, 100.1f, PointZ) - characterTransform.position).normalized;
                 characterTransform.position += direction4 * moveSpeed * Time.deltaTime;
+                Destroy(GameObject.Find("RockMarker(Clone)"));
+                Destroy(GameObject.Find("Cylinder(Clone)"));
+                Destroy(GameObject.Find("Sphere(Clone)"));
             }
             else
             {

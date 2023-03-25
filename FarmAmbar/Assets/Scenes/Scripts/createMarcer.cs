@@ -14,7 +14,7 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
-    List<string> GroundXZ = new List<string>() {"go"};
+    List<string> GroundXZ = new List<string>() { "go" };
 
     void Start()
     {
@@ -27,97 +27,133 @@ public class createMarcer : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Build_mode") == 0)
         {
-
-
-            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit2;
-            if (Physics.Raycast(ray2, out hit2))
+            if (PlayerPrefs.GetInt("Destroy_mode") == 1)
             {
-                if (GameObject.Find("Sphere(Clone)") == null && GameObject.Find("RockMarker(Clone)") == null && PlayerPrefs.GetInt("GetWood") == 0 && PlayerPrefs.GetInt("GetRock") == 0)
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
                 {
-                    if (hit2.collider.gameObject.tag == "Tree")
+                    if (Input.GetMouseButton(0))
                     {
-                        DelTree = hit2.collider.gameObject;
-                        if (Input.GetMouseButtonDown(1))
+                        Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit2;
+                        if (Physics.Raycast(ray2, out hit2))
                         {
-                            Destroy(GameObject.Find("RockMarker(Clone)"));
-                            GameObject obj = GameObject.Find("Sphere(Clone)");
-                            if (obj == null)
+                            if (hit2.collider.gameObject.tag == "build")
                             {
-                                Destroy(GameObject.Find("RockMarker(Clone)"));
-                                Destroy(GameObject.Find("Cylinder(Clone)"));
-                                Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
-                            }
-                            else
-                            {
-                                Destroy(GameObject.Find("RockMarker(Clone)"));
-                                Destroy(GameObject.Find("Cylinder(Clone)"));
-                                Destroy(GameObject.Find("Sphere(Clone)"));
-                                Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
+                                Destroy(hit2.collider.gameObject.transform.parent.gameObject);
                             }
                         }
                     }
-                    else if (hit2.collider.gameObject.tag == "Rock")
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                    Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit2;
+                    if (Physics.Raycast(ray2, out hit2))
                     {
-                        DelRock = hit2.collider.gameObject;
-                        if (Input.GetMouseButtonDown(1))
+                        if (hit2.collider.gameObject.tag == "build")
                         {
-                            GameObject obj = GameObject.Find("RockMarker(Clone)");
-                            if (obj == null)
-                            {
-                                Destroy(GameObject.Find("Cylinder(Clone)"));
-                                Destroy(GameObject.Find("Sphere(Clone)"));
-                                Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
-                            }
-                            else
-                            {
-                                Destroy(GameObject.Find("Cylinder(Clone)"));
-                                Destroy(GameObject.Find("Sphere(Clone)"));
-                                Destroy(GameObject.Find("RockMarker(Clone)"));
-                                Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
-                            }
+                            Destroy(hit2.collider.gameObject.transform.parent.gameObject);
                         }
                     }
-                    else
+                }
+            }
+            if (PlayerPrefs.GetInt("Build") == 1)
+            {
+
+            }
+            else
+            {
+
+                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit2;
+                if (Physics.Raycast(ray2, out hit2))
+                {
+                    if (GameObject.Find("Sphere(Clone)") == null && GameObject.Find("RockMarker(Clone)") == null && PlayerPrefs.GetInt("GetWood") == 0 && PlayerPrefs.GetInt("GetRock") == 0)
                     {
-                        //Transform targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
-                        //GameObject.Find("Farmer").transform.LookAt(new Vector3(targetTransform.position.x, targetTransform.position.y - 11f, targetTransform.position.z));
-                        if (Input.GetMouseButtonDown(1))
+                        if (hit2.collider.gameObject.tag == "Tree")
                         {
-                            GameObject obj = GameObject.Find("Cylinder(Clone)");
-                            if (obj == null)
+                            DelTree = hit2.collider.gameObject;
+                            if (Input.GetMouseButtonDown(1))
                             {
                                 Destroy(GameObject.Find("RockMarker(Clone)"));
-                                Destroy(GameObject.Find("Sphere(Clone)"));
-                                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                                RaycastHit hit;
-                                if (Physics.Raycast(ray, out hit))
+                                GameObject obj = GameObject.Find("Sphere(Clone)");
+                                if (obj == null)
                                 {
-                                    // Get the point of contact between the ray and the object
-                                    Vector3 contactPoint = hit.point;
-
-                                    // Do something with the contact point, such as log it to the console
-
-                                    Debug.Log("Contact point: " + contactPoint);
-                                    Instantiate(Marcer, new Vector3(contactPoint.x, 112.79f, contactPoint.z), Quaternion.identity);
+                                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
+                                }
+                                else
+                                {
+                                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
                                 }
                             }
-                            else
+                        }
+                        else if (hit2.collider.gameObject.tag == "Rock")
+                        {
+                            DelRock = hit2.collider.gameObject;
+                            if (Input.GetMouseButtonDown(1))
                             {
-                                Destroy(GameObject.Find("RockMarker(Clone)"));
-                                Destroy(GameObject.Find("Cylinder(Clone)"));
-                                Destroy(GameObject.Find("Sphere(Clone)"));
-                                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                                RaycastHit hit;
-                                if (Physics.Raycast(ray, out hit))
+                                GameObject obj = GameObject.Find("RockMarker(Clone)");
+                                if (obj == null)
                                 {
-                                    // Get the point of contact between the ray and the object
-                                    Vector3 contactPoint = hit.point;
+                                    Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
+                                }
+                                else
+                                {
+                                    Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Transform targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
+                            //GameObject.Find("Farmer").transform.LookAt(new Vector3(targetTransform.position.x, targetTransform.position.y - 11f, targetTransform.position.z));
+                            if (Input.GetMouseButtonDown(1))
+                            {
+                                GameObject obj = GameObject.Find("Cylinder(Clone)");
+                                if (obj == null)
+                                {
+                                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                                    RaycastHit hit;
+                                    if (Physics.Raycast(ray, out hit))
+                                    {
+                                        // Get the point of contact between the ray and the object
+                                        Vector3 contactPoint = hit.point;
 
-                                    // Do something with the contact point, such as log it to the console
+                                        // Do something with the contact point, such as log it to the console
 
-                                    Debug.Log("Contact point: " + contactPoint);
-                                    Instantiate(Marcer, new Vector3(contactPoint.x, 112.79f, contactPoint.z), Quaternion.identity);
+                                        Debug.Log("Contact point: " + contactPoint);
+                                        Instantiate(Marcer, new Vector3(contactPoint.x, 112.79f, contactPoint.z), Quaternion.identity);
+                                    }
+                                }
+                                else
+                                {
+                                    Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                                    RaycastHit hit;
+                                    if (Physics.Raycast(ray, out hit))
+                                    {
+                                        // Get the point of contact between the ray and the object
+                                        Vector3 contactPoint = hit.point;
+
+                                        // Do something with the contact point, such as log it to the console
+
+                                        Debug.Log("Contact point: " + contactPoint);
+                                        Instantiate(Marcer, new Vector3(contactPoint.x, 112.79f, contactPoint.z), Quaternion.identity);
+                                    }
                                 }
                             }
                         }
@@ -125,7 +161,7 @@ public class createMarcer : MonoBehaviour
                 }
             }
         }
-        else if (PlayerPrefs.GetInt("Build_mode") == 1)
+        else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0)
         {
 
             Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -161,12 +197,12 @@ public class createMarcer : MonoBehaviour
                     {
                         if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                         {
-                           
+
                             float x = AddStartGround.transform.position.x - PosX2;
                             float z = AddStartGround.transform.position.z - PosZ2;
                             if (GroundXZ.Contains((x).ToString() + (z).ToString()))
-                            { 
-                            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+                            {
+                                Destroy(GameObject.Find("Groun_PreModel(Clone)"));
                             }
                             else
                             {
@@ -211,6 +247,7 @@ public class createMarcer : MonoBehaviour
                 }
             }
         }
+        
     }
 }
 

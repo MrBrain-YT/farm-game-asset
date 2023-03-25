@@ -32,6 +32,7 @@ public class BuildGround : MonoBehaviour
                 Anim.SetFloat("BuildGround", 0);
                 Shovel.SetActive(false);
                 PlayerPrefs.SetInt("BuildGround", 0);
+                PlayerPrefs.SetInt("Build", 0);
                 time = time + 1;
             }
             else
