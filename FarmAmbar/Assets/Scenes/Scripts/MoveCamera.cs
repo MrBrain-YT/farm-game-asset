@@ -27,6 +27,10 @@ public class MoveCamera : MonoBehaviour
             CheckMultiBuilding = 0;
             touch = Camera.main.ScreenToViewportPoint(Input.mousePosition);
         }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+
+        }
 
         else if (Input.GetMouseButton(0))
         {

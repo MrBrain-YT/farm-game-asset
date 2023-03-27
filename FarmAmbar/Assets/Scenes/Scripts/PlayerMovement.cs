@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform characterTransform;
     private Transform targetTransform;
     public GameObject Build;
+    public GameObject Build_2;
     public GameObject Shovel;
     // Start is called before the first frame update
     void Start()
@@ -74,12 +75,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                
+
                 PlayerPrefs.SetInt("GetWood", 1);
                 Anim.SetFloat("Wolk", 0f);
                 Axe.SetActive(true);
                 Anim.SetFloat("GetWood", 1f);
-                
+
             }
         }
         GameObject RockMarker = GameObject.Find("RockMarker(Clone)");
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             // Move the character towards the target object if it is not yet close enough
             if (distance3 > 12.5f)
             {
-                        
+
                 transform.LookAt(new Vector3(targetTransformRock.position.x, targetTransformRock.position.y - 0.5f, targetTransformRock.position.z));
                 //transform.LookAt(targetTransform);
                 Anim.SetFloat("Wolk", 1f);
@@ -109,10 +110,10 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(GameObject.Find("RockMarker(Clone)"));
             }
         }
-        Build  = GameObject.FindGameObjectWithTag("build");
-        if (Build != null)
+        Build_2 = GameObject.FindGameObjectWithTag("build_2");
+        if (Build_2 != null)
         {
-            Transform targetTransformBuild = Build.GetComponent<Transform>();
+            Transform targetTransformBuild = Build_2.GetComponent<Transform>();
             float PointX = targetTransformBuild.position.x - 10;
             float PointZ = targetTransformBuild.position.z + 10;
             float distance4 = Vector3.Distance(characterTransform.position, new Vector3(PointX, 100.1f, PointZ));
@@ -138,6 +139,16 @@ public class PlayerMovement : MonoBehaviour
                 PlayerPrefs.SetInt("BuildGround", 1);
                 Anim.SetFloat("Wolk", 0f);
                 Shovel.SetActive(true);
+            }
+        }
+        else
+        {
+            print("123");
+            Build = GameObject.FindGameObjectWithTag("build");
+            if (Build != null)
+            {
+                Build.tag = "build_2";
+                Build.transform.GetChild(0).tag = "build_2";
             }
         }
     }
