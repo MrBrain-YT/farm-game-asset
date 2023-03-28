@@ -143,7 +143,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            print("123");
             Build = GameObject.FindGameObjectWithTag("build");
             if (Build != null)
             {

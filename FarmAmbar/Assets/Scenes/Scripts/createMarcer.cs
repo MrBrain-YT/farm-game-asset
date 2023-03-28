@@ -14,7 +14,9 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
-    List<string> GroundXZ = new List<string>() { "go" };
+    public float xToMenuController;
+    public float zToMenuController;
+    public List<string> GroundXZ = new List<string>() { "go" };
 
     void Start()
     {
@@ -25,6 +27,24 @@ public class createMarcer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            if (Input.GetMouseButton(0))
+            {
+                Ray ray5 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit5;
+                if (Physics.Raycast(ray5, out hit5))
+                {
+                    float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit5.point.x)) / 20);
+                    float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit5.point.z)) / 20);
+                    float PosX2 = PosX * 20;
+                    float PosZ2 = (PosZ * 20) + 20;
+                    xToMenuController = AddStartGround.transform.position.x - PosX2;
+                    zToMenuController = AddStartGround.transform.position.z - PosZ2;
+                }    
+            }
+        }
+
         if (PlayerPrefs.GetInt("Build_mode") == 0)
         {
             if (PlayerPrefs.GetInt("Destroy_mode") == 1)
@@ -37,8 +57,15 @@ public class createMarcer : MonoBehaviour
                         RaycastHit hit2;
                         if (Physics.Raycast(ray2, out hit2))
                         {
+                            float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
+                            float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
+                            float PosX2 = PosX * 20;
+                            float PosZ2 = (PosZ * 20) + 20;
                             if (hit2.collider.gameObject.tag == "build")
                             {
+                                float x = AddStartGround.transform.position.x - PosX2;
+                                float z = AddStartGround.transform.position.z - PosZ2;
+                                GroundXZ.Remove((x).ToString() + (z).ToString());
                                 Destroy(hit2.collider.gameObject.transform.parent.gameObject);
                             }
                         }
@@ -50,8 +77,15 @@ public class createMarcer : MonoBehaviour
                     RaycastHit hit2;
                     if (Physics.Raycast(ray2, out hit2))
                     {
+                        float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
+                        float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
+                        float PosX2 = PosX * 20;
+                        float PosZ2 = (PosZ * 20) + 20;
                         if (hit2.collider.gameObject.tag == "build")
                         {
+                            float x = AddStartGround.transform.position.x - PosX2;
+                            float z = AddStartGround.transform.position.z - PosZ2;
+                            GroundXZ.Remove((x).ToString() + (z).ToString());
                             Destroy(hit2.collider.gameObject.transform.parent.gameObject);
                         }
                     }

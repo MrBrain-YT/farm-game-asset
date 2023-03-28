@@ -2051,6 +2051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildItemsPanel: {fileID: 240239223}
+  player: {fileID: 1045897005}
 --- !u!4 &524634709
 Transform:
   m_ObjectHideFlags: 0
@@ -3270,6 +3271,10 @@ MonoBehaviour:
   GroundGalagramm: {fileID: 1349060337490185746, guid: bb50d090818599f4ebca4e8bddeae34f, type: 3}
   GroundBuildPreModel: {fileID: 1349060337490185746, guid: 884f6044e69fffe499857ed84b9d3c04, type: 3}
   Ground_Part1: {fileID: 1349060337490185746, guid: 21850fd799de2e14e823aa40f43235c2, type: 3}
+  xToMenuController: 0
+  zToMenuController: 0
+  GroundXZ:
+  - go
 --- !u!114 &1045897007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3415,6 +3420,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDialogPanel: {fileID: 1409534084}
   MenuPanel: {fileID: 82095778}
+  curentObject: {fileID: 0}
 --- !u!1001 &1058072920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3682,7 +3688,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1095327608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 524634708}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: DestroyMenuObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1095327608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5373,7 +5391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 48c663b0d41f53f4cab7fd8fb5e814f6, type: 3}
       propertyPath: m_Name
-      value: Neutral Idle
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 48c663b0d41f53f4cab7fd8fb5e814f6, type: 3}
       propertyPath: m_TagString
