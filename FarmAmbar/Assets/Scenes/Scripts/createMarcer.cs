@@ -44,8 +44,7 @@ public class createMarcer : MonoBehaviour
                 }    
             }
         }
-
-        if (PlayerPrefs.GetInt("Build_mode") == 0)
+        if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 1 && PlayerPrefs.GetInt("Move_mode") == 0)
         {
             if (PlayerPrefs.GetInt("Destroy_mode") == 1)
             {
@@ -97,7 +96,6 @@ public class createMarcer : MonoBehaviour
             }
             else
             {
-
                 Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit2;
                 if (Physics.Raycast(ray2, out hit2))
@@ -194,8 +192,9 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
+
         }
-        else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0)
+        else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0)
         {
 
             Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -281,7 +280,34 @@ public class createMarcer : MonoBehaviour
                 }
             }
         }
-        
+        else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 1)
+        {
+            Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit2;
+            if (Physics.Raycast(ray2, out hit2))
+            {
+                float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
+                float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
+                float PosX2 = PosX * 20;
+                float PosZ2 = (PosZ * 20) + 20;
+                float x = AddStartGround.transform.position.x - PosX2;
+                float z = AddStartGround.transform.position.z - PosZ2;
+                this.GetComponent<ReplaceObject>().curentObject.transform.position = new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2);
+                if (Input.GetMouseButton(0))
+                {
+                    if (GroundXZ.Contains((x).ToString() + (z).ToString()))
+                    {
+
+                    }
+                    else
+                    {
+                        GroundXZ.Add((x).ToString() + (z).ToString());
+                        this.GetComponent<ReplaceObject>().curentObject.transform.position = new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2);
+                        PlayerPrefs.SetInt("Move_mode", 0);
+                    }
+                }
+            }
+        }
     }
 }
 

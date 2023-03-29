@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (this.GetComponent<BuildGround>().time > 600)
                 {
-                    this.GetComponent<BuildGround>().time = 0;
+                    this.GetComponent<BuildGround>().time = -2;
                 }
                 Anim.SetFloat("BuildGround", 1f);
                 PlayerPrefs.SetInt("BuildGround", 1);

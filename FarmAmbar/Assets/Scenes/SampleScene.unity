@@ -2857,7 +2857,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923910773}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 524634708}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: MoveMenuObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &923910773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4514,6 +4526,7 @@ GameObject:
   - component: {fileID: 1409534085}
   - component: {fileID: 1409534087}
   - component: {fileID: 1409534086}
+  - component: {fileID: 1409534088}
   m_Layer: 5
   m_Name: ItemDialogPanel
   m_TagString: Untagged
@@ -4580,6 +4593,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409534084}
   m_CullTransparentMesh: 1
+--- !u!114 &1409534088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409534084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5f38c74772140b44840c9af6802b653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1414821416
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,6 +5290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Speed: 1
+  ItemDialogPanel: {fileID: 1409534084}
 --- !u!1001 &1640293771
 PrefabInstance:
   m_ObjectHideFlags: 0

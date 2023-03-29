@@ -9,6 +9,7 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("Move_mode", 0);
         PlayerPrefs.SetInt("Build_mode", 0);
         PlayerPrefs.SetString("CurrentBuildItem", "");
     }
@@ -25,6 +26,7 @@ public class MenuController : MonoBehaviour
         {
             PlayerPrefs.SetInt("Build_mode", 1);
             PlayerPrefs.SetInt("Destroy_mode", 0);
+            PlayerPrefs.SetInt("Move_mode", 0);
             BuildItemsPanel.SetActive(true);
         }
         else
@@ -41,6 +43,7 @@ public class MenuController : MonoBehaviour
             BuildItemsPanel.SetActive(false);
             PlayerPrefs.SetInt("Destroy_mode", 1);
             PlayerPrefs.SetInt("Build_mode", 0);
+            PlayerPrefs.SetInt("Move_mode", 0);
             Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
         else
@@ -53,19 +56,9 @@ public class MenuController : MonoBehaviour
 
     public void DestroyMenuObject()
     {
-        
         player.GetComponent<ReplaceObject>().MenuPanel.SetActive(false);
         player.GetComponent<ReplaceObject>().itemDialogPanel.SetActive(false);
-
         GameObject AddStartGround = player.GetComponent<createMarcer>().AddStartGround;
-        //RaycastHit hit2 = player.GetComponent<createMarcer>().hit5;
-        /*float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
-        float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
-        float PosX2 = PosX * 20;
-        float PosZ2 = (PosZ * 20) + 20;
-        float x = AddStartGround.transform.position.x - PosX2;
-        float z = AddStartGround.transform.position.z - PosZ2;
-        print(x);*/
         player.GetComponent<createMarcer>().GroundXZ.Remove((player.GetComponent<createMarcer>().xToMenuController.ToString() + (player.GetComponent<createMarcer>().zToMenuController).ToString()));
         Destroy(player.GetComponent<ReplaceObject>().curentObject);
     }
@@ -73,5 +66,15 @@ public class MenuController : MonoBehaviour
     public void ActiveBuildGround()
     {
         PlayerPrefs.SetString("CurrentBuildItem", "Ground_1");
+    }
+
+    public void MoveMenuObject()
+    {
+        PlayerPrefs.SetInt("Destroy_mode", 0);
+        PlayerPrefs.SetInt("Build_mode", 0);
+        PlayerPrefs.SetInt("Move_mode", 1);
+        player.GetComponent<ReplaceObject>().MenuPanel.SetActive(false);
+        player.GetComponent<ReplaceObject>().itemDialogPanel.SetActive(false);
+        player.GetComponent<createMarcer>().GroundXZ.Remove((player.GetComponent<createMarcer>().xToMenuController.ToString() + (player.GetComponent<createMarcer>().zToMenuController).ToString()));
     }
 }

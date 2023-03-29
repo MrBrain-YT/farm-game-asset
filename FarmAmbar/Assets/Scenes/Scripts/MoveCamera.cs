@@ -6,6 +6,7 @@ public class MoveCamera : MonoBehaviour
 {
     // Start is called before the first frame update
     Vector3 touch;
+    float timeLeft = 0.3f;
     public int CheckMultiBuilding = 0;
     void Start()
     {
@@ -37,6 +38,12 @@ public class MoveCamera : MonoBehaviour
             CheckMultiBuilding = 0;
             Vector3 direction = touch - Camera.main.ScreenToViewportPoint(Input.mousePosition);
             GameObject.Find("camera").transform.position += new Vector3(direction.x, direction.z, direction.y);
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0)
+            {
+                this.gameObject.GetComponent<KeyboardCameraMovement>().ItemDialogPanel.SetActive(false);
+                timeLeft = 0.3f;
+            }
         }
 
     }
