@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 7abb91774fb7d474aa94b0b59fbc881c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - NewGround: {fileID: 919132149155446097, guid: 3b459f2007850fa4584ab68d1dda384a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

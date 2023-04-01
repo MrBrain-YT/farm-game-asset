@@ -14,6 +14,7 @@ public class createMarcer : MonoBehaviour
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
     public GameObject Ground_Part1;
+    public GameObject GroundPlanted;
     public float xToMenuController;
     public float zToMenuController;
     public List<string> GroundXZ = new List<string>() { "go" };
@@ -41,36 +42,15 @@ public class createMarcer : MonoBehaviour
                     float PosZ2 = (PosZ * 20) + 20;
                     xToMenuController = AddStartGround.transform.position.x - PosX2;
                     zToMenuController = AddStartGround.transform.position.z - PosZ2;
-                }    
+                }
             }
         }
-        if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 1 && PlayerPrefs.GetInt("Move_mode") == 0)
+        if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 1 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
         {
-            if (PlayerPrefs.GetInt("Destroy_mode") == 1)
+
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
-                {
-                    if (Input.GetMouseButton(0))
-                    {
-                        Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
-                        RaycastHit hit2;
-                        if (Physics.Raycast(ray2, out hit2))
-                        {
-                            float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
-                            float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
-                            float PosX2 = PosX * 20;
-                            float PosZ2 = (PosZ * 20) + 20;
-                            if (hit2.collider.gameObject.tag == "build")
-                            {
-                                float x = AddStartGround.transform.position.x - PosX2;
-                                float z = AddStartGround.transform.position.z - PosZ2;
-                                GroundXZ.Remove((x).ToString() + (z).ToString());
-                                Destroy(hit2.collider.gameObject.transform.parent.gameObject);
-                            }
-                        }
-                    }
-                }
-                if (Input.GetMouseButtonDown(1))
+                if (Input.GetMouseButton(0))
                 {
                     Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit2;
@@ -90,6 +70,28 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit2;
+                if (Physics.Raycast(ray2, out hit2))
+                {
+                    float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
+                    float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
+                    float PosX2 = PosX * 20;
+                    float PosZ2 = (PosZ * 20) + 20;
+                    if (hit2.collider.gameObject.tag == "build")
+                    {
+                        float x = AddStartGround.transform.position.x - PosX2;
+                        float z = AddStartGround.transform.position.z - PosZ2;
+                        GroundXZ.Remove((x).ToString() + (z).ToString());
+                        Destroy(hit2.collider.gameObject.transform.parent.gameObject);
+                    }
+                }
+            }
+        }
+        if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
+        {
             if (PlayerPrefs.GetInt("Build") == 1)
             {
 
@@ -192,9 +194,8 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-
         }
-        else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0)
+        else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
         {
 
             Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -280,7 +281,7 @@ public class createMarcer : MonoBehaviour
                 }
             }
         }
-        else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 1)
+        else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 1 && PlayerPrefs.GetInt("Plenting_mode") == 0)
         {
             Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit2;
@@ -304,6 +305,40 @@ public class createMarcer : MonoBehaviour
                         GroundXZ.Add((x).ToString() + (z).ToString());
                         this.GetComponent<ReplaceObject>().curentObject.transform.position = new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2);
                         PlayerPrefs.SetInt("Move_mode", 0);
+                    }
+                }
+            }
+        }
+        else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 1)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit2;
+                if (Physics.Raycast(ray2, out hit2))
+                {
+                    if (hit2.collider.tag == "earth_1")
+                    {
+                        GameObject Earth = Instantiate(GroundPlanted, new Vector3(hit2.collider.transform.position.x - 20, 99, hit2.collider.transform.position.z), Quaternion.identity);
+                        Earth.transform.rotation = new Quaternion(0, 0, -90, 90);
+                        Destroy(hit2.collider.gameObject.transform.parent.gameObject);
+                    }
+                }
+            }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit2;
+                    if (Physics.Raycast(ray2, out hit2))
+                    {
+                        if (hit2.collider.tag == "earth_1")
+                        {
+                            GameObject Earth = Instantiate(GroundPlanted, new Vector3(hit2.collider.transform.position.x - 20, 99, hit2.collider.transform.position.z), Quaternion.identity);
+                            Earth.transform.rotation = new Quaternion(0, 0, -90, 90);
+                            Destroy(hit2.collider.gameObject.transform.parent.gameObject);
+                        }
                     }
                 }
             }
