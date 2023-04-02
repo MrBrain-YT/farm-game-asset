@@ -3975,13 +3975,12 @@ MonoBehaviour:
   Marcer: {fileID: 4856669820636644094, guid: 424f91fcd91839d489106fb6a3ea43ec, type: 3}
   TreeMarcer: {fileID: 9033208980722146317, guid: 3b1a6213d6bf3074697b5616db804c1b, type: 3}
   RockMarcer: {fileID: 5507005979314028265, guid: 2af3bcdcf1970c04ea42e2147ae0d2b7, type: 3}
+  SeedMarcer: {fileID: 5507005979314028265, guid: 5bd701ce2127dba44a78a66415a3006a, type: 3}
   DelTree: {fileID: 0}
   DelRock: {fileID: 0}
   AddStartGround: {fileID: 1786102699}
   GroundGalagramm: {fileID: 1349060337490185746, guid: bb50d090818599f4ebca4e8bddeae34f, type: 3}
   GroundBuildPreModel: {fileID: 1349060337490185746, guid: 884f6044e69fffe499857ed84b9d3c04, type: 3}
-  Ground_Part1: {fileID: 1349060337490185746, guid: 21850fd799de2e14e823aa40f43235c2, type: 3}
-  GroundPlanted: {fileID: 3467369854155498968, guid: fd89a07dc10ed6944a3c6392ed119633, type: 3}
   xToMenuController: 0
   zToMenuController: 0
   GroundXZ:
@@ -4006,6 +4005,7 @@ MonoBehaviour:
   Build: {fileID: 0}
   Build_2: {fileID: 0}
   Shovel: {fileID: 1608791609}
+  SeedPlant: {fileID: 0}
 --- !u!95 &1045897008
 Animator:
   serializedVersion: 4
@@ -4132,6 +4132,22 @@ MonoBehaviour:
   itemDialogPanel: {fileID: 1409534084}
   MenuPanel: {fileID: 82095778}
   curentObject: {fileID: 0}
+--- !u!114 &1045897021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045897005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df3ad83d3e19c1843b171849016109a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 10
+  time: 0
+  SeedPlant: {fileID: 3467369854155498968, guid: fd89a07dc10ed6944a3c6392ed119633, type: 3}
+  Anim: {fileID: 1045897008}
 --- !u!224 &1057514012 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2975683881270329338, guid: be49f3ce83b3fbf4ea668e0091c6a11b, type: 3}

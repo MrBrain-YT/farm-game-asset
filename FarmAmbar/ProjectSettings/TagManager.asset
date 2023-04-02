@@ -13,6 +13,7 @@ TagManager:
   - terrain
   - build_2
   - earth_2
+  - SeedMarker
   layers:
   - Default
   - TransparentFX

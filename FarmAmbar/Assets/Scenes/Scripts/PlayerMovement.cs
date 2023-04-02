@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Build;
     public GameObject Build_2;
     public GameObject Shovel;
+    public GameObject SeedPlant;
+    private float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetInt("GetWood", 0);
         PlayerPrefs.SetInt("BuildGround", 0);
         PlayerPrefs.SetInt("Build", 0);
+        PlayerPrefs.SetFloat("Seeding", 0);
 
         characterTransform = transform.GetComponent<Transform>();
         targetTransform = GameObject.Find("Cylinder(Clone)").GetComponent<Transform>();
@@ -30,8 +33,46 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        Anim.SetFloat("GetWood", 0);
+        Build_2 = GameObject.FindGameObjectWithTag("build_2");
+        if (Build_2 != null)
+        {
+            Transform targetTransformBuild = Build_2.GetComponent<Transform>();
+            float PointX = targetTransformBuild.position.x - 10;
+            float PointZ = targetTransformBuild.position.z + 10;
+            float distance4 = Vector3.Distance(characterTransform.position, new Vector3(PointX, 100.1f, PointZ));
+            //Instantiate(GroundBuild, new Vector3(PointX, 100.1f, PointZ), Quaternion.identity);
+            if (distance4 > 5f)
+            {
+                PlayerPrefs.SetInt("Build", 1);
+                transform.LookAt(new Vector3(PointX, targetTransformBuild.position.y - 0.5f, PointZ));
+                Anim.SetFloat("Wolk", 1f);
+                Vector3 direction4 = (new Vector3(PointX, 100.1f, PointZ) - characterTransform.position).normalized;
+                characterTransform.position += direction4 * moveSpeed * Time.deltaTime;
+                Destroy(GameObject.Find("RockMarker(Clone)"));
+                Destroy(GameObject.Find("Cylinder(Clone)"));
+                Destroy(GameObject.Find("Sphere(Clone)"));
+            }
+            else
+            {
+                if (this.GetComponent<BuildGround>().time > 600)
+                {
+                    this.GetComponent<BuildGround>().time = -2;
+                }
+                Anim.SetFloat("BuildGround", 1f);
+                PlayerPrefs.SetInt("BuildGround", 1);
+                Anim.SetFloat("Wolk", 0f);
+                Shovel.SetActive(true);
+            }
+        }
+        else
+        {
+            Build = GameObject.FindGameObjectWithTag("build");
+            if (Build != null)
+            {
+                Build.tag = "build_2";
+                Build.transform.GetChild(0).tag = "build_2";
+            }
+        }
         GameObject MoveMarker = GameObject.Find("Cylinder(Clone)");
         if (MoveMarker != null)
         {
@@ -110,45 +151,43 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(GameObject.Find("RockMarker(Clone)"));
             }
         }
-        Build_2 = GameObject.FindGameObjectWithTag("build_2");
-        if (Build_2 != null)
+        if (timer == 2)
         {
-            Transform targetTransformBuild = Build_2.GetComponent<Transform>();
-            float PointX = targetTransformBuild.position.x - 10;
-            float PointZ = targetTransformBuild.position.z + 10;
-            float distance4 = Vector3.Distance(characterTransform.position, new Vector3(PointX, 100.1f, PointZ));
-            //Instantiate(GroundBuild, new Vector3(PointX, 100.1f, PointZ), Quaternion.identity);
-            if (distance4 > 5f)
+            GameObject SeedMarker = GameObject.FindGameObjectWithTag("SeedMarker");
+            if (SeedMarker != null)
             {
-                PlayerPrefs.SetInt("Build", 1);
-                transform.LookAt(new Vector3(PointX, targetTransformBuild.position.y - 0.5f, PointZ));
-                Anim.SetFloat("Wolk", 1f);
-                Vector3 direction4 = (new Vector3(PointX, 100.1f, PointZ) - characterTransform.position).normalized;
-                characterTransform.position += direction4 * moveSpeed * Time.deltaTime;
-                Destroy(GameObject.Find("RockMarker(Clone)"));
-                Destroy(GameObject.Find("Cylinder(Clone)"));
-                Destroy(GameObject.Find("Sphere(Clone)"));
-            }
-            else
-            {
-                if (this.GetComponent<BuildGround>().time > 600)
+                Transform targetTransformSeed = SeedMarker.GetComponent<Transform>();
+                float distance2 = Vector3.Distance(characterTransform.position, new Vector3(targetTransformSeed.position.x - 10, 100.1f, targetTransformSeed.position.z + 10));
+
+                // Move the character towards the target object if it is not yet close enough
+                if (distance2 > 1f)
                 {
-                    this.GetComponent<BuildGround>().time = -2;
+                    //this.GetComponent<MiningWood>().time = 0;
+                    transform.LookAt(new Vector3(targetTransformSeed.position.x, targetTransformSeed.position.y - 0.5f, targetTransformSeed.position.z));
+                    //transform.LookAt(targetTransform);
+                    Anim.SetFloat("Wolk", 1f);
+                    print(distance2);
+                    Vector3 direction2 = ((new Vector3(targetTransformSeed.position.x - 10, 100.1f, targetTransformSeed.position.z + 10)) - characterTransform.position).normalized;
+                    characterTransform.position += direction2 * moveSpeed * Time.deltaTime;
+                    //Destroy(GameObject.Find("Cylinder(Clone)"));
                 }
-                Anim.SetFloat("BuildGround", 1f);
-                PlayerPrefs.SetInt("BuildGround", 1);
-                Anim.SetFloat("Wolk", 0f);
-                Shovel.SetActive(true);
+                else
+                {
+                    PlayerPrefs.SetInt("Seeding", 1);
+                    Anim.SetFloat("Wolk", 0f);
+                    Anim.SetFloat("Seeding", 1f);
+                    SeedPlant = SeedMarker;
+                    timer = 0;
+                    if (this.GetComponent<Planting>().time >= 601)
+                    {
+                        this.GetComponent<Planting>().time = 0;
+                    }
+                }
             }
         }
         else
         {
-            Build = GameObject.FindGameObjectWithTag("build");
-            if (Build != null)
-            {
-                Build.tag = "build_2";
-                Build.transform.GetChild(0).tag = "build_2";
-            }
+            timer += 1;
         }
     }
 }

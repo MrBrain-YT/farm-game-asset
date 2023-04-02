@@ -8,13 +8,12 @@ public class createMarcer : MonoBehaviour
     public GameObject Marcer;
     public GameObject TreeMarcer;
     public GameObject RockMarcer;
+    public GameObject SeedMarcer;
     public GameObject DelTree;
     public GameObject DelRock;
     public GameObject AddStartGround;
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
-    public GameObject Ground_Part1;
-    public GameObject GroundPlanted;
     public float xToMenuController;
     public float zToMenuController;
     public List<string> GroundXZ = new List<string>() { "go" };
@@ -115,6 +114,7 @@ public class createMarcer : MonoBehaviour
                                 {
                                     Destroy(GameObject.Find("RockMarker(Clone)"));
                                     Destroy(GameObject.Find("Cylinder(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
                                 }
                                 else
@@ -122,6 +122,7 @@ public class createMarcer : MonoBehaviour
                                     Destroy(GameObject.Find("RockMarker(Clone)"));
                                     Destroy(GameObject.Find("Cylinder(Clone)"));
                                     Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Instantiate(TreeMarcer, new Vector3(hit2.point.x, 100.4f, hit2.point.z), Quaternion.identity);
                                 }
                             }
@@ -136,6 +137,7 @@ public class createMarcer : MonoBehaviour
                                 {
                                     Destroy(GameObject.Find("Cylinder(Clone)"));
                                     Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
                                 }
                                 else
@@ -143,6 +145,7 @@ public class createMarcer : MonoBehaviour
                                     Destroy(GameObject.Find("Cylinder(Clone)"));
                                     Destroy(GameObject.Find("Sphere(Clone)"));
                                     Destroy(GameObject.Find("RockMarker(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Instantiate(RockMarcer, hit2.collider.gameObject.transform.position, Quaternion.identity);
                                 }
                             }
@@ -158,6 +161,7 @@ public class createMarcer : MonoBehaviour
                                 {
                                     Destroy(GameObject.Find("RockMarker(Clone)"));
                                     Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                                     RaycastHit hit;
                                     if (Physics.Raycast(ray, out hit))
@@ -176,6 +180,7 @@ public class createMarcer : MonoBehaviour
                                     Destroy(GameObject.Find("RockMarker(Clone)"));
                                     Destroy(GameObject.Find("Cylinder(Clone)"));
                                     Destroy(GameObject.Find("Sphere(Clone)"));
+                                    Destroy(GameObject.Find("SeedMarcer(Clone)"));
                                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                                     RaycastHit hit;
                                     if (Physics.Raycast(ray, out hit))
@@ -319,9 +324,10 @@ public class createMarcer : MonoBehaviour
                 {
                     if (hit2.collider.tag == "earth_1")
                     {
-                        GameObject Earth = Instantiate(GroundPlanted, new Vector3(hit2.collider.transform.position.x - 20, 99, hit2.collider.transform.position.z), Quaternion.identity);
-                        Earth.transform.rotation = new Quaternion(0, 0, -90, 90);
-                        Destroy(hit2.collider.gameObject.transform.parent.gameObject);
+                        Destroy(GameObject.Find("Cylinder(Clone)"));
+                        Destroy(GameObject.Find("Sphere(Clone)"));
+                        Destroy(GameObject.Find("SeedMarcer(Clone)"));
+                        hit2.collider.gameObject.transform.parent.gameObject.tag = "SeedMarker";
                     }
                 }
             }
@@ -335,9 +341,11 @@ public class createMarcer : MonoBehaviour
                     {
                         if (hit2.collider.tag == "earth_1")
                         {
-                            GameObject Earth = Instantiate(GroundPlanted, new Vector3(hit2.collider.transform.position.x - 20, 99, hit2.collider.transform.position.z), Quaternion.identity);
-                            Earth.transform.rotation = new Quaternion(0, 0, -90, 90);
-                            Destroy(hit2.collider.gameObject.transform.parent.gameObject);
+                            Destroy(GameObject.Find("Cylinder(Clone)"));
+                            Destroy(GameObject.Find("Sphere(Clone)"));
+                            Destroy(GameObject.Find("SeedMarcer(Clone)"));
+                            hit2.collider.gameObject.transform.parent.gameObject.tag = "SeedMarker";
+                            
                         }
                     }
                 }
