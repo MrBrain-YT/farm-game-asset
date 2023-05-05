@@ -8,6 +8,7 @@ public class MiningRock : MonoBehaviour
     public GameObject PixeAxe;
     private GameObject delRock;
     public Animator Anim;
+    public MaterialsItems rock;
     void Start()
     {
         
@@ -27,8 +28,8 @@ public class MiningRock : MonoBehaviour
                 Anim.SetFloat("GetRock", 0);
                 PixeAxe.SetActive(false);
                 PlayerPrefs.SetInt("GetRock", 0);
-                
-
+                rock.count += 1;
+                GameObject.Find("ObjectsVariable").GetComponent<Inventory>().RefreshInventory();
             }
             else
             {

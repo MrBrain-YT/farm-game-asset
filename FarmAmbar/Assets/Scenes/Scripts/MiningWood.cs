@@ -10,6 +10,7 @@ public class MiningWood : MonoBehaviour
     public GameObject Axe;
     private GameObject Tree;
     public Animator Anim;
+    public MaterialsItems tree;
     void Start()
     {
         
@@ -28,6 +29,8 @@ public class MiningWood : MonoBehaviour
                 Axe.SetActive(false);
                 PlayerPrefs.SetInt("GetWood", 0);
                 Destroy(GameObject.Find("Sphere(Clone)"));
+                tree.count += 1;
+                GameObject.Find("ObjectsVariable").GetComponent<Inventory>().RefreshInventory();
             }
             else
             {

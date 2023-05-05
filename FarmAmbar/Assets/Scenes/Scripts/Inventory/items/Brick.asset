@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa9e0497437b82549913e0a55b5241b4, type: 3}
-  m_Name: Tree
+  m_Name: Brick
   m_EditorClassIdentifier: 
-  Name: Tree
-  count: 100
-  icon: {fileID: 21300000, guid: 3ba0760026f9c9b45987bd058a520621, type: 3}
+  Name: Brick
+  count: 4
+  icon: {fileID: 21300000, guid: 076796e8fd9065f449f66e05799a45dc, type: 3}
