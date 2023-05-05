@@ -22,10 +22,19 @@ public class Inventory : MonoBehaviour
 
     public void OpenInventory()
     {
-        for (int i = 0; i < inventoryItems; i++)
+        int CountChildrens = content.transform.childCount;
+        for (int i = 0; i < CountChildrens; i++)
+        {
+            //Destroy(content.transform.GetChild(0).GetComponent<RectTransform>());
+            Destroy(content.transform.GetChild(0).gameObject);
+            //Destroy(gameObject.transform.Find("Item(Clone)"));
+        }
+
+            for (int i = 0; i < inventoryItems; i++)
         {
             GameObject item  = Instantiate(itemPanel);
-            item.transform.parent = content.transform;
+            item.transform.SetParent(content.transform);
+            item.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 }
