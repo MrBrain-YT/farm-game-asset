@@ -7,12 +7,14 @@ public class MenuController : MonoBehaviour
     public GameObject BuildItemsPanel;
     public GameObject plentingItemsPanel;
     public GameObject player;
+    public GameObject inventory;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPrefs.SetInt("Move_mode", 0);
         PlayerPrefs.SetInt("Plenting_mode", 0);
         PlayerPrefs.SetInt("Build_mode", 0);
+        PlayerPrefs.SetInt("Inventory", 0);
         PlayerPrefs.SetString("CurrentBuildItem", "");
     }
 
@@ -30,8 +32,10 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Build_mode", 1);
             PlayerPrefs.SetInt("Destroy_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
+            PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
             BuildItemsPanel.SetActive(true);
+            inventory.SetActive(false);
         }
         else
         {
@@ -39,8 +43,10 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Build_mode", 0);
             PlayerPrefs.SetInt("Destroy_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
+            PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
             BuildItemsPanel.SetActive(false);
+            inventory.SetActive(false);
             Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
     }
@@ -50,9 +56,11 @@ public class MenuController : MonoBehaviour
         {
             plentingItemsPanel.SetActive(false);
             BuildItemsPanel.SetActive(false);
+            inventory.SetActive(false);
             PlayerPrefs.SetInt("Destroy_mode", 1);
             PlayerPrefs.SetInt("Build_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
+            PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
             Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
@@ -69,12 +77,14 @@ public class MenuController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Plenting_mode") == 0)
         {
+            PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Destroy_mode", 0);
             PlayerPrefs.SetInt("Build_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
             PlayerPrefs.SetInt("Plenting_mode", 1);
             BuildItemsPanel.SetActive(false);
             plentingItemsPanel.SetActive(true);
+            inventory.SetActive(false);
         }
         else
         {

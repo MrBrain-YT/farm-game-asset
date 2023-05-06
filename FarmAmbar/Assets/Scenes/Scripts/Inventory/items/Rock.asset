@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   Name: Rock
-  count: 4
+  count: 0
   icon: {fileID: 21300000, guid: a90925cba2e09ec42bf8a0a171f0e1f0, type: 3}
