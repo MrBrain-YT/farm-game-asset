@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class MenuController : MonoBehaviour
     public GameObject plentingItemsPanel;
     public GameObject player;
     public GameObject inventory;
+
+    public List<BuildingItems> buildingItems;
+    public GameObject PlantAndBuldPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +22,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Build_mode", 0);
         PlayerPrefs.SetInt("Inventory", 0);
         PlayerPrefs.SetString("CurrentBuildItem", "");
+        buildingItems = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().myBuildings;
     }
 
     // Update is called once per frame
@@ -36,6 +43,25 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Plenting_mode", 0);
             BuildItemsPanel.SetActive(true);
             inventory.SetActive(false);
+
+            int Chailds = BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.childCount;
+            for (int i = 0; i < Chailds; i++)
+            {
+                Destroy(BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(i).gameObject);
+            }
+
+            int BuildItems = buildingItems.Count;
+            for (int j = 0; j < BuildItems; j++)
+            {
+                print(j);
+                GameObject panel = Instantiate(PlantAndBuldPanel);
+                panel.transform.SetParent(BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                panel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = buildingItems[j].Name;
+                panel.transform.GetChild(0).GetComponent<Image>().sprite = buildingItems[j].icon;
+                panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = buildingItems[j].count.ToString();
+                panel.transform.localScale = new Vector3(0.2824726f, -0.700887f, 2.530084f);
+            }
+            //BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => OnBuildMode());
         }
         else
         {

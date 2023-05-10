@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa9e0497437b82549913e0a55b5241b4, type: 3}
-  m_Name: Rock
+  m_Script: {fileID: 11500000, guid: 1e390a470445d5848987b5f57c8ecf29, type: 3}
+  m_Name: wheat
   m_EditorClassIdentifier: 
-  Name: Rock
-  count: 0
-  icon: {fileID: 21300000, guid: a90925cba2e09ec42bf8a0a171f0e1f0, type: 3}
+  Name: Wheat
+  count: 2
+  icon: {fileID: 21300000, guid: 228d5a15affa2b14792f1dccb93c174b, type: 3}
+  type: Ground_1
