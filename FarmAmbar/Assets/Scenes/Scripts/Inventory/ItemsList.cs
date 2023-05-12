@@ -16,6 +16,7 @@ public class ItemsList : MonoBehaviour
     public MaterialsItems rock;
 
     // Building items
+    public BuildingItems ground;
     public BuildingItems ambar;
 
     // Seed items
@@ -30,6 +31,7 @@ public class ItemsList : MonoBehaviour
         myVariables.Add(rock);
 
         // Add building items to list 
+        myBuildings.Add(ground);
         myBuildings.Add(ambar);
 
         // Add seed items to list 

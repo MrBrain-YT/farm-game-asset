@@ -35,6 +35,7 @@ public class MenuController : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Build_mode") == 0)
         {
+            PlayerPrefs.SetString("CurrentBuildItem", "");
             plentingItemsPanel.SetActive(false);
             PlayerPrefs.SetInt("Build_mode", 1);
             PlayerPrefs.SetInt("Destroy_mode", 0);
@@ -53,15 +54,26 @@ public class MenuController : MonoBehaviour
             int BuildItems = buildingItems.Count;
             for (int j = 0; j < BuildItems; j++)
             {
-                print(j);
-                GameObject panel = Instantiate(PlantAndBuldPanel);
-                panel.transform.SetParent(BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
-                panel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = buildingItems[j].Name;
-                panel.transform.GetChild(0).GetComponent<Image>().sprite = buildingItems[j].icon;
-                panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = buildingItems[j].count.ToString();
-                panel.transform.localScale = new Vector3(0.2824726f, -0.700887f, 2.530084f);
+                if (buildingItems[j].count != 0)
+                {
+                    GameObject panel = Instantiate(PlantAndBuldPanel);
+                    panel.transform.SetParent(BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    panel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = buildingItems[j].Name;
+                    panel.transform.GetChild(0).GetComponent<Image>().sprite = buildingItems[j].icon;
+                    if (buildingItems[j].showCount == true)
+                    {
+                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = buildingItems[j].count.ToString();
+                    }
+                    else
+                    {
+                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
+                    }
+                    panel.transform.localScale = new Vector3(0.2824726f, -0.700887f, 2.530084f);
+                    print(buildingItems[j].Type);
+                    panel.GetComponent<Button>().onClick.AddListener(() => ActiveBuildGround(buildingItems[j].Type.ToString()));
+                }
+
             }
-            //BuildItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<Button>().onClick.AddListener(() => OnBuildMode());
         }
         else
         {
@@ -130,9 +142,9 @@ public class MenuController : MonoBehaviour
         Destroy(player.GetComponent<ReplaceObject>().curentObject);
     }
 
-    public void ActiveBuildGround()
+    public void ActiveBuildGround(string type)
     {
-        PlayerPrefs.SetString("CurrentBuildItem", "Ground_1");
+        PlayerPrefs.SetString("CurrentBuildItem", type);
     }
 
     public void MoveMenuObject()

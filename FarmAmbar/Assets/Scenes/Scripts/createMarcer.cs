@@ -215,6 +215,7 @@ public class createMarcer : MonoBehaviour
                         float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit2.point.x)) / 20);
                         float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit2.point.z)) / 20);
 
+                                
 
                         float PosX2 = PosX * 20;
                         float PosZ2 = (PosZ * 20) + 20;
@@ -235,7 +236,6 @@ public class createMarcer : MonoBehaviour
                         {
                             if (PlayerPrefs.GetString("CurrentBuildItem") == "Ground_1")
                             {
-
                                 float x = AddStartGround.transform.position.x - PosX2;
                                 float z = AddStartGround.transform.position.z - PosZ2;
                                 if (GroundXZ.Contains((x).ToString() + (z).ToString()))

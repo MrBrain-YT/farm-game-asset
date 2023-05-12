@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c97f0a78e62b9b4c898391fb8b26242, type: 3}
-  m_Name: ambar
+  m_Name: ground
   m_EditorClassIdentifier: 
   finished: 0
   stage: 0
-  count: 29
-  icon: {fileID: 21300000, guid: b44e3b05d81f49742bb58f928b660f8c, type: 3}
-  Name: Ambar
+  count: 99999
+  icon: {fileID: 21300000, guid: 90175fec73789a44dabcd635018da21e, type: 3}
+  Name: Ground
   exists: 0
   showCount: 0
-  Type: ambar
+  Type: Ground_1

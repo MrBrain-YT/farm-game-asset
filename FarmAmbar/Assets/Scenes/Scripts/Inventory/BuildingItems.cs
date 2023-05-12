@@ -12,4 +12,5 @@ public class BuildingItems : ScriptableObject
     public string Name;
     public bool exists;
     public bool showCount;
+    public string Type;
 }
