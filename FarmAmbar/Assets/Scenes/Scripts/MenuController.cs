@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     public GameObject inventory;
 
     public List<BuildingItems> buildingItems;
+    public List<SeedsItems> seedsItems;
     public GameObject PlantAndBuldPanel;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Inventory", 0);
         PlayerPrefs.SetString("CurrentBuildItem", "");
         buildingItems = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().myBuildings;
+        seedsItems = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().mySeeds;
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class MenuController : MonoBehaviour
                     panel.transform.GetChild(0).GetComponent<Image>().sprite = buildingItems[j].icon;
                     if (buildingItems[j].showCount == true)
                     {
-                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = buildingItems[j].count.ToString();
+                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = buildingItems[1].count.ToString();
                     }
                     else
                     {
@@ -70,9 +72,8 @@ public class MenuController : MonoBehaviour
                     }
                     panel.transform.localScale = new Vector3(0.2824726f, -0.700887f, 2.530084f);
                     print(buildingItems[j].Type);
-                    panel.GetComponent<Button>().onClick.AddListener(() => ActiveBuildGround(buildingItems[j].Type.ToString()));
+                    panel.GetComponent<Button>().onClick.AddListener(() => ActiveBuildGround(buildingItems[0].Type.ToString()));
                 }
-
             }
         }
         else
@@ -123,6 +124,34 @@ public class MenuController : MonoBehaviour
             BuildItemsPanel.SetActive(false);
             plentingItemsPanel.SetActive(true);
             inventory.SetActive(false);
+
+            int Chailds = plentingItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.childCount;
+            for (int i = 0; i < Chailds; i++)
+            {
+                Destroy(plentingItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetChild(i).gameObject);
+            }
+
+            int seedsItem = seedsItems.Count;
+            for (int j = 0; j < seedsItem; j++)
+            {
+                if (seedsItems[j].count != 0)
+                {
+                    GameObject panel = Instantiate(PlantAndBuldPanel);
+                    panel.transform.SetParent(plentingItemsPanel.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    panel.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = seedsItems[j].Name;
+                    panel.transform.GetChild(0).GetComponent<Image>().sprite = seedsItems[j].icon;
+                    if (seedsItems[j].showCount == true)
+                    {
+                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = seedsItems[j].count.ToString();
+                    }
+                    else
+                    {
+                        panel.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "";
+                    }
+                    panel.transform.localScale = new Vector3(0.2824726f, -0.700887f, 2.530084f);
+                    panel.GetComponent<Button>().onClick.AddListener(() => ActiveBuildGround(seedsItems[0].Type.ToString()));
+                }
+            }
         }
         else
         {
