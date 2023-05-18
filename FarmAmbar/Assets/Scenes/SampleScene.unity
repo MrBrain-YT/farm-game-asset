@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.48395744, g: 0.57573867, b: 0.68019843, a: 1}
+  m_IndirectSpecularColor: {r: 0.48396307, g: 0.5757423, b: 0.6802008, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2085,7 +2085,8 @@ MonoBehaviour:
   inventory: {fileID: 136756298}
   buildingItems: []
   seedsItems: []
-  PlantAndBuldPanel: {fileID: 8659322678248694982, guid: be49f3ce83b3fbf4ea668e0091c6a11b, type: 3}
+  PlantPanel: {fileID: 8659322678248694982, guid: be49f3ce83b3fbf4ea668e0091c6a11b, type: 3}
+  BuildPanel: {fileID: 8659322678248694982, guid: aaebff70ceb74e043b0400cd73e34b58, type: 3}
 --- !u!4 &524634709
 Transform:
   m_ObjectHideFlags: 0
@@ -2801,18 +2802,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9242c1fdd7f1e4f45be3c5c359ade27a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myVariables:
+  myMaterials:
   - {fileID: 11400000, guid: b0f415d1cfe736546b85df03001e8244, type: 2}
   - {fileID: 11400000, guid: 8fea35fcf16fab94fb91fc4475fabb65, type: 2}
   - {fileID: 11400000, guid: d4ade901485aaa54facc0b7c0951518c, type: 2}
-  myBuildings: []
-  mySeeds: []
-  tree: {fileID: 11400000, guid: b0f415d1cfe736546b85df03001e8244, type: 2}
-  Brick: {fileID: 11400000, guid: 8fea35fcf16fab94fb91fc4475fabb65, type: 2}
-  rock: {fileID: 11400000, guid: d4ade901485aaa54facc0b7c0951518c, type: 2}
-  ground: {fileID: 11400000, guid: 5e425fb24f79fcf4d92ae79a7e38c6ef, type: 2}
-  ambar: {fileID: 11400000, guid: dd89979acdff22d43b882f90b827c3ef, type: 2}
-  wheat: {fileID: 11400000, guid: 00c57447875b4e24194fbe9286728d50, type: 2}
+  myBuildings:
+  - {fileID: 11400000, guid: 5e425fb24f79fcf4d92ae79a7e38c6ef, type: 2}
+  - {fileID: 11400000, guid: dd89979acdff22d43b882f90b827c3ef, type: 2}
+  mySeeds:
+  - {fileID: 11400000, guid: 00c57447875b4e24194fbe9286728d50, type: 2}
+  - {fileID: 11400000, guid: d462b2c34a65f284d93b2a4e706e19cc, type: 2}
 --- !u!1001 &913541848
 PrefabInstance:
   m_ObjectHideFlags: 0

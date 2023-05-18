@@ -8,7 +8,6 @@ public class SeedsItems : ScriptableObject
     public string Name;
     public int count;
     public Sprite icon;
-    public string type;
     public bool showCount;
     public string Type;
 }

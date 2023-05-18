@@ -6,27 +6,15 @@ public class ItemsList : MonoBehaviour
 {
 
     public object value;
-    public List<MaterialsItems> myVariables;
+    public List<MaterialsItems> myMaterials;
     public List<BuildingItems> myBuildings;
     public List<SeedsItems> mySeeds;
-
-    // Material items
-    public MaterialsItems tree;
-    public MaterialsItems Brick;
-    public MaterialsItems rock;
-
-    // Building items
-    public BuildingItems ground;
-    public BuildingItems ambar;
-
-    // Seed items
-    public SeedsItems wheat;
 
 
     private void Start()
     {
         // Add material items to list 
-        myVariables.Add(tree);
+        /*myVariables.Add(tree);
         myVariables.Add(Brick);
         myVariables.Add(rock);
 
@@ -36,6 +24,7 @@ public class ItemsList : MonoBehaviour
 
         // Add seed items to list 
         mySeeds.Add(wheat);
+        mySeeds.Add(tomat);*/
     }
 
     public ItemsList(MaterialsItems value)

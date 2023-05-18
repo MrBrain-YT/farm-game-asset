@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e390a470445d5848987b5f57c8ecf29, type: 3}
-  m_Name: wheat
+  m_Name: Wheat
   m_EditorClassIdentifier: 
   Name: Wheat
-  count: 2
+  count: 82
   icon: {fileID: 21300000, guid: 228d5a15affa2b14792f1dccb93c174b, type: 3}
-  type: Ground_1
   showCount: 1
-  Type: tadef
+  Type: Wheat
