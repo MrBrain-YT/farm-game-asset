@@ -14,6 +14,9 @@ TagManager:
   - build_2
   - earth_2
   - SeedMarker
+  - earth_3
+  - earth_4
+  - inventory
   layers:
   - Default
   - TransparentFX

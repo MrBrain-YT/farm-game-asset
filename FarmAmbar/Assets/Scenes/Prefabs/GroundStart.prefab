@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ff9febf52cdcc3439ebc42a431a3e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OldGround: {fileID: 747219029517017287, guid: 7c700a1749a10144e880340cb5069842, type: 3}
+  Timer: 600
 --- !u!1 &5589909842693545217
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 3087186077692875748}
   m_Layer: 0
   m_Name: default
-  m_TagString: Untagged
+  m_TagString: earth_2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

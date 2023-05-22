@@ -23,6 +23,7 @@ public class MenuController : MonoBehaviour
         PlayerPrefs.SetInt("Plenting_mode", 0);
         PlayerPrefs.SetInt("Build_mode", 0);
         PlayerPrefs.SetInt("Inventory", 0);
+        PlayerPrefs.SetInt("Collecting_mode", 0);
         PlayerPrefs.SetString("CurrentBuildItem", "");
         PlayerPrefs.SetString("CurrentSeed", "");
         buildingItems = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().myBuildings;
@@ -43,6 +44,7 @@ public class MenuController : MonoBehaviour
             plentingItemsPanel.SetActive(false);
             PlayerPrefs.SetInt("Build_mode", 1);
             PlayerPrefs.SetInt("Destroy_mode", 0);
+            PlayerPrefs.SetInt("Collecting_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
             PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
@@ -103,6 +105,7 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Move_mode", 0);
             PlayerPrefs.SetInt("Inventory", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
+            PlayerPrefs.SetInt("Collecting_mode", 0);
             Destroy(GameObject.Find("Groun_PreModel(Clone)"));
         }
         else
@@ -122,6 +125,7 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("Destroy_mode", 0);
             PlayerPrefs.SetInt("Build_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
+            PlayerPrefs.SetInt("Collecting_mode", 0);
             PlayerPrefs.SetInt("Plenting_mode", 1);
             BuildItemsPanel.SetActive(false);
             plentingItemsPanel.SetActive(true);
@@ -164,6 +168,29 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void OnCollectingMode()
+    {
+        if (PlayerPrefs.GetInt("Collecting_mode") == 0)
+        {
+            plentingItemsPanel.SetActive(false);
+            BuildItemsPanel.SetActive(false);
+            inventory.SetActive(false);
+            PlayerPrefs.SetInt("Destroy_mode", 0);
+            PlayerPrefs.SetInt("Collecting_mode", 1);
+            PlayerPrefs.SetInt("Build_mode", 0);
+            PlayerPrefs.SetInt("Move_mode", 0);
+            PlayerPrefs.SetInt("Inventory", 0);
+            PlayerPrefs.SetInt("Plenting_mode", 0);
+            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+        }
+        else
+        {
+            plentingItemsPanel.SetActive(false);
+            BuildItemsPanel.SetActive(false);
+            PlayerPrefs.SetInt("Destroy_mode", 0);
+            Destroy(GameObject.Find("Groun_PreModel(Clone)"));
+        }
+    }
 
     public void DestroyMenuObject()
     {

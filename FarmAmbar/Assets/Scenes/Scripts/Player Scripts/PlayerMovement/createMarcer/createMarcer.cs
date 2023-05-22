@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class createMarcer : MonoBehaviour
-{
+{ 
     public GameObject Marcer;
     public GameObject TreeMarcer;
     public GameObject RockMarcer;
@@ -43,7 +43,7 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-            if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 1 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
+            if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 1 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0 && PlayerPrefs.GetInt("Collecting_mode") == 0)
             {
 
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -88,7 +88,7 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-            if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
+            if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0 && PlayerPrefs.GetInt("Collecting_mode") == 0)
             {
                 if (PlayerPrefs.GetInt("Build") == 1)
                 {
@@ -191,7 +191,7 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-            else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0)
+            else if (PlayerPrefs.GetInt("Build_mode") == 1 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0 && PlayerPrefs.GetInt("Collecting_mode") == 0)
             {
 
                 Ray ray2 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -277,7 +277,7 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-            else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 1 && PlayerPrefs.GetInt("Plenting_mode") == 0)
+            else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 1 && PlayerPrefs.GetInt("Plenting_mode") == 0 && PlayerPrefs.GetInt("Collecting_mode") == 0)
             {
                 if (Input.GetMouseButton(0))
                 {
@@ -306,7 +306,7 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
-            else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 1)
+            else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 1 && PlayerPrefs.GetInt("Collecting_mode") == 0)
             {
                 if (Input.GetMouseButtonDown(1))
                 {
@@ -349,7 +349,47 @@ public class createMarcer : MonoBehaviour
                     }
                 }
             }
+            
 
+            else if (PlayerPrefs.GetInt("Build_mode") == 0 && PlayerPrefs.GetInt("Destroy_mode") == 0 && PlayerPrefs.GetInt("Move_mode") == 0 && PlayerPrefs.GetInt("Plenting_mode") == 0 && PlayerPrefs.GetInt("Collecting_mode") == 1)
+            {
+                if (Input.GetMouseButtonDown(1))
+                {
+                    GameObject.FindGameObjectWithTag("Player").transform.GetChild(3).GetComponent<CollectingMode>().CollectingItems();
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        print(hit.collider.gameObject);
+                        if (hit.collider.transform.tag == "earth_4")
+                        {
+                            
+                            Destroy(hit.collider.gameObject);
+                            GameObject.FindGameObjectWithTag("inventory").transform.GetComponent<ItemsList>().mySeeds[0].count += Random.Range(5, 8);
+                        }
+                    }
+                }
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    if (Input.GetMouseButton(0))
+                    {
+                        GameObject.FindGameObjectWithTag("Player").transform.GetChild(3).GetComponent<CollectingMode>().CollectingItems();
+                        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit))
+                        {
+
+                            if (hit.collider.transform.tag == "earth_4")
+                            {
+                                print("hi");
+                                Destroy(hit.collider.gameObject);
+                                GameObject.FindGameObjectWithTag("inventory").transform.GetComponent<ItemsList>().mySeeds[0].count += Random.Range(5, 8);
+                            }
+                        }
+                    }
+                }
+            }
         }
+        print(PlayerPrefs.GetInt("Collecting_mode"));
     }
 }
