@@ -363,9 +363,17 @@ public class createMarcer : MonoBehaviour
                         print(hit.collider.gameObject);
                         if (hit.collider.transform.tag == "earth_4")
                         {
-                            
                             Destroy(hit.collider.gameObject);
                             GameObject.FindGameObjectWithTag("inventory").transform.GetComponent<ItemsList>().mySeeds[0].count += Random.Range(5, 8);
+                            float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit.point.x)) / 20);
+                            float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit.point.z)) / 20);
+                            float PosX2 = PosX * 20;
+                            float PosZ2 = (PosZ * 20) + 20;
+                            float x = AddStartGround.transform.position.x - PosX2;
+                            float z = AddStartGround.transform.position.z - PosZ2;
+                            GroundXZ.Remove((x).ToString() + (z).ToString());
+
+
                         }
                     }
                 }
@@ -381,9 +389,15 @@ public class createMarcer : MonoBehaviour
 
                             if (hit.collider.transform.tag == "earth_4")
                             {
-                                print("hi");
                                 Destroy(hit.collider.gameObject);
                                 GameObject.FindGameObjectWithTag("inventory").transform.GetComponent<ItemsList>().mySeeds[0].count += Random.Range(5, 8);
+                                float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit.point.x)) / 20);
+                                float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit.point.z)) / 20);
+                                float PosX2 = PosX * 20;
+                                float PosZ2 = (PosZ * 20) + 20;
+                                float x = AddStartGround.transform.position.x - PosX2;
+                                float z = AddStartGround.transform.position.z - PosZ2;
+                                GroundXZ.Remove((x).ToString() + (z).ToString());
                             }
                         }
                     }
