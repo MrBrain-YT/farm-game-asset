@@ -13,6 +13,7 @@ public class createMarcer : MonoBehaviour
     public GameObject AddStartGround;
     public GameObject GroundGalagramm;
     public GameObject GroundBuildPreModel;
+    public GameObject Ground_1;
     public float xToMenuController;
     public float zToMenuController;
     public List<string> GroundXZ;
@@ -360,7 +361,6 @@ public class createMarcer : MonoBehaviour
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        print(hit.collider.gameObject);
                         if (hit.collider.transform.tag == "earth_4")
                         {
                             Destroy(hit.collider.gameObject);
@@ -371,7 +371,8 @@ public class createMarcer : MonoBehaviour
                             float PosZ2 = (PosZ * 20) + 20;
                             float x = AddStartGround.transform.position.x - PosX2;
                             float z = AddStartGround.transform.position.z - PosZ2;
-                            GroundXZ.Remove((x).ToString() + (z).ToString());
+                            GameObject GO = Instantiate(Ground_1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                            GO.transform.rotation = Quaternion.Euler(0, 0, 90);
 
 
                         }
@@ -389,21 +390,19 @@ public class createMarcer : MonoBehaviour
 
                             if (hit.collider.transform.tag == "earth_4")
                             {
-                                Destroy(hit.collider.gameObject);
+                                Destroy(hit.collider.gameObject.transform.parent);
                                 GameObject.FindGameObjectWithTag("inventory").transform.GetComponent<ItemsList>().mySeeds[0].count += Random.Range(5, 8);
                                 float PosX = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.x - hit.point.x)) / 20);
                                 float PosZ = Mathf.Floor((Mathf.Floor(AddStartGround.transform.position.z - hit.point.z)) / 20);
                                 float PosX2 = PosX * 20;
                                 float PosZ2 = (PosZ * 20) + 20;
-                                float x = AddStartGround.transform.position.x - PosX2;
-                                float z = AddStartGround.transform.position.z - PosZ2;
-                                GroundXZ.Remove((x).ToString() + (z).ToString());
+                                GameObject GO = Instantiate(Ground_1, new Vector3(AddStartGround.transform.position.x - PosX2, 101, AddStartGround.transform.position.z - PosZ2), Quaternion.identity);
+                                GO.transform.rotation = Quaternion.Euler(0, 0, 90);
                             }
                         }
                     }
                 }
             }
         }
-        print(PlayerPrefs.GetInt("Collecting_mode"));
     }
 }
