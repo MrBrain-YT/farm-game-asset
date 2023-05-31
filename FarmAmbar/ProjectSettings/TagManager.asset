@@ -4,19 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Marker
-  - Rock
-  - Tree
-  - earth_0
-  - earth_1
-  - build
-  - terrain
-  - build_2
-  - earth_2
-  - SeedMarker
+  - inventory
   - earth_3
   - earth_4
-  - inventory
+  - Marker
+  - earth_0
+  - earth_1
+  - earth_2
+  - terrain
+  - Tree
+  - Rock
+  - build_2
+  - build
+  - SeedMarker
   layers:
   - Default
   - TransparentFX
@@ -26,7 +26,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - PostProcessing
   - 
   - 
   - 
