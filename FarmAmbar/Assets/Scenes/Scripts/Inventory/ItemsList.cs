@@ -9,6 +9,7 @@ public class ItemsList : MonoBehaviour
     public List<MaterialsItems> myMaterials;
     public List<BuildingItems> myBuildings;
     public List<SeedsItems> mySeeds;
+    public List<SellItems> mySells;
 
 
     private void Start()

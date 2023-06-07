@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     private List<BuildingItems> myBuildings;
     private List<SeedsItems> mySeeds;
     public GameObject inventory;
+    public GameObject MoneyPanel;
 
     public int inventoryItems;
     // Start is called before the first frame update
@@ -21,6 +22,7 @@ public class Inventory : MonoBehaviour
         myBuildings = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().myBuildings;
         mySeeds = GameObject.Find("ObjectsVariable").GetComponent<ItemsList>().mySeeds;
         inventoryItems = myVariables.Count;
+        MoneyPanel = GameObject.Find("MoneyPanel");
     }
 
     // Update is called once per frame
@@ -42,7 +44,9 @@ public class Inventory : MonoBehaviour
             PlayerPrefs.SetInt("Destroy_mode", 0);
             PlayerPrefs.SetInt("Move_mode", 0);
             PlayerPrefs.SetInt("Plenting_mode", 0);
+            PlayerPrefs.SetInt("Selling_mode", 0);
             PlayerPrefs.SetInt("Inventory", 1);
+            
             InventoryBuilder();
         }
         else
@@ -55,6 +59,7 @@ public class Inventory : MonoBehaviour
     {
         if (inventory.active == false)
         {
+            MoneyPanel.SetActive(false);
             PlayerPrefs.SetInt("Inventory", 1);
             inventory.SetActive(true);
             inventoryItems = myVariables.Count;
@@ -91,6 +96,7 @@ public class Inventory : MonoBehaviour
         {
             inventory.SetActive(false);
             PlayerPrefs.SetInt("Inventory", 0);
+            MoneyPanel.SetActive(true);
         }
     }
 
